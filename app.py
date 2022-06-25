@@ -20,8 +20,8 @@ import os
 
 app = Flask(__name__)
 
-YOUR_CHANNEL_ACCESS_TOKEN = "ここにアクセストークンを入れる"
-YOUR_CHANNEL_SECRET = "ここにチャンネルシークレットを入れる"
+YOUR_CHANNEL_ACCESS_TOKEN = os.environ.get('YOUR_CHANNEL_ACCESS_TOKEN')
+YOUR_CHANNEL_SECRET = os.environ.get('YOUR_CHANNEL_SECRET')
 
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
@@ -51,5 +51,5 @@ def handle_message(event):
 
 
 if __name__ == "__main__":
-    port = int(os.getenv("PORT", 5000))
+    port = int(os.getenv("PORT", 8080))
     app.run(host="0.0.0.0", port=port)
